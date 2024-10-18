@@ -20,7 +20,7 @@ Using [packer.nvim](https://github.com/wbthomason/packer.nvim):
 
 ```lua
 use {
-    'your-username/youtrack.nvim',
+    'alikaya/youtrack.nvim',
     requires = {
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope.nvim',
