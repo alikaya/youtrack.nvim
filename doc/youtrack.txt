@@ -1,0 +1,117 @@
+*youtrack.txt*  Youtrack integration for Neovim
+
+==============================================================================
+CONTENTS                                                    *youtrack-contents*
+
+    1. Introduction ........................... |youtrack-introduction|
+    2. Installation ........................... |youtrack-installation|
+    3. Configuration .......................... |youtrack-configuration|
+    4. Commands ............................... |youtrack-commands|
+    5. Mappings ............................... |youtrack-mappings|
+    6. Functions .............................. |youtrack-functions|
+    7. Integrations ........................... |youtrack-integrations|
+
+==============================================================================
+1. INTRODUCTION                                          *youtrack-introduction*
+
+Youtrack.nvim is a Neovim plugin that provides integration with JetBrains
+Youtrack. It allows you to manage your tasks, create new issues, track time,
+and more, all from within Neovim.
+
+==============================================================================
+2. INSTALLATION                                          *youtrack-installation*
+
+Using packer.nvim:
+>
+    use {
+        'your-username/youtrack.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+        },
+        config = function()
+            require('youtrack').setup({
+                -- Your configuration here
+            })
+        end
+    }
+<
+
+==============================================================================
+3. CONFIGURATION                                        *youtrack-configuration*
+
+You can configure the plugin by passing options to the setup function:
+>
+    require('youtrack').setup({
+        instances = {
+            default = {
+                url = "https://youtrack.example.com",
+                token = "YOUR_API_TOKEN",
+            },
+        },
+        current_instance = "default",
+        log_level = "INFO",
+        cache_config = {
+            ttl = 300, -- 5 minutes
+        },
+        auto_open_dashboard = false,
+        lsp = {
+            enabled = true,
+            filetypes = { "lua", "python", "javascript" },
+        },
+    })
+<
+
+==============================================================================
+4. COMMANDS                                                  *youtrack-commands*
+
+:YoutrackProjects           List all projects
+:YoutrackTasks              List tasks in the selected project
+:YoutrackMyTasks            List your assigned tasks
+:YoutrackCreateTask         Create a new task
+:YoutrackSearchTasks        Search for tasks
+:YoutrackDashboard          Open the Youtrack dashboard
+:YoutrackTimeTracker        Toggle time tracking for a task
+:YoutrackReport             Generate a report
+:YoutrackGitBranch          Create a git branch from a task
+:YoutrackCommit             Create a commit with task ID
+:YoutrackGoToTask           Go to task under cursor
+
+==============================================================================
+5. MAPPINGS                                                  *youtrack-mappings*
+
+Default mappings (can be disabled with g:youtrack_no_default_mappings):
+
+<leader>yp                  :YoutrackProjects
+<leader>yt                  :YoutrackTasks
+<leader>ym                  :YoutrackMyTasks
+<leader>yc                  :YoutrackCreateTask
+<leader>ys                  :YoutrackSearchTasks
+<leader>yd                  :YoutrackDashboard
+<leader>ytt                 :YoutrackTimeTracker
+<leader>yr                  :YoutrackReport
+<leader>yg                  :YoutrackGoToTask
+
+==============================================================================
+6. FUNCTIONS                                                *youtrack-functions*
+
+require('youtrack').list_projects()
+require('youtrack').list_tasks(project_id)
+require('youtrack').list_my_tasks()
+require('youtrack').create_task()
+require('youtrack').search_tasks()
+require('youtrack').show_task_details(task_id)
+
+==============================================================================
+7. INTEGRATIONS                                          *youtrack-integrations*
+
+Git Integration:
+- Create branches from tasks
+- Create commits with task IDs
+
+LSP Integration:
+- Enhanced hover information for task IDs
+- Go to task functionality
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
